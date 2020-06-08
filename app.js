@@ -1,30 +1,19 @@
-var express = require("express"),
-    mongoose = require("mongoose"),
-    passport = require("passport"),
-    bodyParser = require("body-parser");
+const express = require("express");
+const mongoose = require("mongoose");
+const passport = require("passport");
+    
 
-var app = express();
-app.set("view engine", "ejs");
-app.use(express.static(__dirname + '/views'));
+const app = express();
+const port = process.env.PORT || 5001;
 
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.json());
 
-app.get("/", function(req,res){
-    res.render("landing")
+app.get("/", (req,res) => {
+    res.send("landing")
 });
 
 
-
-
-
-
-
-
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 3000;
-}
-app.listen(port, function(req, res){
-    console.log("Server has started!")
+app.listen(port, () => {
+    console.log(`Server has started on port ${port}!`);
 });
